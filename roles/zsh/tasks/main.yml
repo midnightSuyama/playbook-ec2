@@ -1,0 +1,13 @@
+- name: install zsh
+  yum: name=zsh
+  sudo: yes
+
+- name: download .zprofile
+  get_url: url={{ zprofile_url }} dest=~/.zprofile
+
+- name: download .zshrc
+  get_url: url={{ zshrc_url }} dest=~/.zshrc
+
+- name: switch shell to zsh
+  user: name={{ ansible_user_id }} shell=/bin/zsh
+  sudo: yes

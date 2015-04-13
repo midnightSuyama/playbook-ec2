@@ -1,0 +1,28 @@
+- name: install emacs
+  yum: name=emacs
+  sudo: yes
+
+- name: create directory .emacs.d
+  file: path=~/.emacs.d mode=700 state=directory
+
+- name: download init.el
+  get_url: url={{ init_url }} dest=~/.emacs.d/init.el
+
+#- name: detect cask installed
+#  stat: path=~/.cask
+#  register: cask_installed
+
+#- name: install cask
+#  shell: curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+#  when: cask_installed.stat.exists == false
+
+#- name: download cask-file
+#  get_url: url={{ cask_url }} dest=~/.emacs.d/Cask
+
+#- name: detect packages installed
+#  stat: path=~/.emacs.d/.cask
+#  register: packages_installed
+
+#- name: install packages
+#  shell: ~/.cask/bin/cask install --path ~/.emacs.d
+#  when: packages_installed.stat.exists == false

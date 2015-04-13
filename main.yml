@@ -1,0 +1,13 @@
+- hosts: all
+  roles:
+    - common
+    - sshd
+    - zsh
+    - tmux
+    - emacs
+    - rvm
+    - nginx
+    - mysql
+    - postfix
+    - monit
+    - deploy

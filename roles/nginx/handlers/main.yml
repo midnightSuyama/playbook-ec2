@@ -1,0 +1,11 @@
+- name: start nginx
+  service: name=nginx state=started enabled=yes
+  sudo: yes
+
+- name: stop nginx
+  service: name=nginx state=stopped
+  sudo: yes
+
+- name: restart nginx
+  service: name=nginx state=restarted
+  sudo: yes

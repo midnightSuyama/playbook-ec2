@@ -1,0 +1,8 @@
+- name: install nginx
+  yum: name=nginx
+  sudo: yes
+
+- name: copy nginx.conf
+  copy: src=nginx.conf dest=/etc/nginx/nginx.conf
+  sudo: yes
+  notify: start nginx

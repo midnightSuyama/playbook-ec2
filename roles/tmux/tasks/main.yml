@@ -1,0 +1,6 @@
+- name: install tmux
+  yum: name=tmux
+  sudo: yes
+
+- name: download .tmux.conf
+  get_url: url={{ conf_url }} dest=~/.tmux.conf

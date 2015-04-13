@@ -1,0 +1,4 @@
+- name: change ssh port
+  lineinfile: dest=/etc/ssh/sshd_config regexp='^Port' insertafter='^#Port 22' line='Port {{ ssh_port }}' validate='sshd -T -f %s'
+  sudo: yes
+  notify: restart sshd

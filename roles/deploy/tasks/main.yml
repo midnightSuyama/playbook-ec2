@@ -1,0 +1,23 @@
+- name: add user deploy
+  user: name=deploy comment='Deploy User' generate_ssh_key=yes
+  sudo: yes
+
+- name: rename ssh key
+  shell: cp /home/deploy/.ssh/id_rsa.pub /home/deploy/.ssh/authorized_keys creates=/home/deploy/.ssh/authorized_keys
+  sudo: yes
+
+- name: change permission ssh key
+  file: path=/home/deploy/.ssh/authorized_keys mode=600
+  sudo: yes
+
+- name: copy sudoers.d/deploy
+  copy: src=deploy dest=/etc/sudoers.d/deploy mode=440
+  sudo: yes
+
+- name: create directory www
+  file: path=/var/www state=directory
+  sudo: yes
+
+- name: create directory app
+  file: path=/var/www/app owner=deploy group=deploy state=directory
+  sudo: yes

@@ -1,0 +1,20 @@
+- name: stop sendmail
+  service: name=sendmail state=stopped enabled=no
+  sudo: yes
+
+- name: install postfix
+  yum: name=postfix
+  sudo: yes
+
+- name: start saslauthd
+  service: name=saslauthd state=started enabled=yes
+  sudo: yes
+
+- name: copy main.cf
+  template: src=main.cf dest=/etc/postfix/main.cf
+  sudo: yes
+  notify: start postfix
+
+- name: set mta postfix
+  shell: alternatives --set mta /usr/sbin/sendmail.postfix
+  sudo: yes

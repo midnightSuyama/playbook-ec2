@@ -1,0 +1,3 @@
+- name: rebuild aliases
+  shell: newaliases
+  sudo: yes

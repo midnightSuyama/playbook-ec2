@@ -1,0 +1,12 @@
+- name: install monit
+  yum: name=monit
+  sudo: yes
+
+- name: copy monit.d
+  copy: src=monit.d dest=/etc/
+  sudo: yes
+
+- name: copy monit.conf
+  copy: src=monit.conf dest=/etc/monit.conf mode=700
+  sudo: yes
+  notify: start monit

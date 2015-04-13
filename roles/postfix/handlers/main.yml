@@ -1,0 +1,11 @@
+- name: start postfix
+  service: name=postfix state=started enabled=yes
+  sudo: yes
+
+- name: stop postfix
+  service: name=postfix state=stopped
+  sudo: yes
+
+- name: restart postfix
+  service: name=postfix state=restarted
+  sudo: yes
